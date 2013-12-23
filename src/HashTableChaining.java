@@ -47,17 +47,16 @@ public class HashTableChaining{
 			}
 			//case 3: key not found in bucket
 			buckets[bucketIndex].add(new Node(key,value));
+			totalValues++;
 		}
 	}
 	public String get(Integer key){
 		int bucketIndex = getHashCode(key);
 		LinkedList<Node> l = buckets[bucketIndex];
 		if(l != null){
-			Iterator<Node> itr = l.iterator();
-			while(itr.hasNext()){
-				Node n = itr.next();
+			for(Node n : l){
 				if(n.key == key)
-					return n.value;
+					return n.value;				
 			}
 		}
 		return "No such key";
@@ -66,15 +65,11 @@ public class HashTableChaining{
 		int bucketIndex = getHashCode(key);
 		LinkedList<Node> l = buckets[bucketIndex];
 		if(l != null){
-			Node n = null;
-			Iterator<Node> itr = l.iterator();
-			while(itr.hasNext()){
-				n = itr.next();
-				if(n.key == key)
-					break;
-			}
-			if(n != null){
-				l.remove(n);
+			for(Node n : l){
+				if(n.key == key){
+					l.remove(n);
+					totalValues--;
+				}
 			}
 		}
 		
