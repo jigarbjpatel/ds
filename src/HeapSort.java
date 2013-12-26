@@ -31,14 +31,15 @@ public class HeapSort{
 			percolateDown(data,i,N);
 	}
 	private void percolateDown(Integer[] data, int index, int N){
-		while(2*index < N){
-			int leftChildIndex = 2*index;
+		int leftChildIndex = 2*index+1;
+		while(leftChildIndex < N){
 			int childToCompareWith = leftChildIndex;
-			if(leftChildIndex+1 < N && data[leftChildIndex] < data[leftChildIndex+1])
+			if(leftChildIndex < N-1 && data[leftChildIndex] < data[leftChildIndex+1])
 				childToCompareWith = leftChildIndex+1;
 			if(data[index] < data[childToCompareWith]){
 				swap(data,index,childToCompareWith);
 				index = childToCompareWith;
+				leftChildIndex = 2*index+1;
 			}
 			else
 				break;
