@@ -35,7 +35,7 @@ public class PowerOutage {
 		buildTree(root, nodes);
 		minTime = calculateCosts(root, true);
 		
-		printTree(root);
+		//printTree(root);
 		return minTime;
 	}
 	private int calculateCosts(Node root, boolean isRoot) {
