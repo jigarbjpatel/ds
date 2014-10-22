@@ -15,6 +15,7 @@ public class LinkedListStack{
 		top = null;
 	}
 	public void push(Integer value){
+		//Note carefully--- we are making new node point to existing top 
 		Node n = new Node(value,top);
 		top = n;
 	}

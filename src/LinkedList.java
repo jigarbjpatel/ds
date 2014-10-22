@@ -1,4 +1,3 @@
-package edu.cmu.jjpatel;
 
 import java.util.*;
 
@@ -102,6 +101,20 @@ public class LinkedList implements Iterable<Integer>{
 		currNode.next = null; //second last node's next = null and so on it will make first node's next also null
 		
 	}
+	public void reverseIteratively(){
+		if(head != null){
+			Node prev = null;
+			Node curr = head;
+			Node next = null;
+			while(curr != null){
+				next = curr.next;
+				curr.next = prev;
+				prev = curr;
+				curr = next;
+			}
+			head = prev;			
+		}
+	}
 	public static void main(String args[]){
 		LinkedList intList  = new LinkedList();
 		intList.add(5);
@@ -113,12 +126,17 @@ public class LinkedList implements Iterable<Integer>{
 		intList.remove(1);
 		intList.add(12);
 		intList.add(11);
-		System.out.println(intList);
+		for(Integer i : intList)
+			System.out.print(i + " ");
 		intList.reverseInPlace();
+		System.out.println();
 		Iterator itr = intList.iterator();
-		while(itr.hasNext()){
-			System.out.println(itr.next());
-		}
+		while(itr.hasNext())
+			System.out.print(itr.next() + " ");
+		System.out.println();
+		intList.reverseIteratively();
+		for(Integer i : intList)
+			System.out.print(i + " ");
 		//LinkedList reversedlist = intList.reverse() //Use addFirst logic and return new list OR recursively reverse OR iterate
 		//LinkedList deepCopyList = intList.deepCopy() //Use 2 pointers - 1 for old list and 1 for new list and copy only data
 	}
