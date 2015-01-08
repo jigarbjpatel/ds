@@ -2,7 +2,7 @@ package edu.cmu.jjpatel;
 //All in ascending order
 public class BasicSort{
 	//Basic idea is find the correct element for current index (by using min variable) and then swap
-	//Total O(n) swaps only
+	//Total O(n) swaps only but O(n^2) comparisions
 	public void selectionSort(Integer[] data){
 		int minIndex = 0;
 		//last element is already in its place after n-1 passes
@@ -16,10 +16,12 @@ public class BasicSort{
 		}
 	}
 	//Basic idea - compare adjacent elements and keep on swaping larger element with smaller element
+	//In each pass, the largest element is placed at its correct position i.e. end values are in their proper places. 
+	//O(n^2) in worst case but in place. O(n) if the array is nearly sorted (only when we use a flag)
 	public void bubbleSort(Integer[] data){
 		boolean swapped = false; 
 		for(int i=0; i<data.length; i++){
-			//total N-i-1 comparisions in innerloop
+			//total N-i-1 comparisions in innerloop 
 			for(int j=0; j<data.length-i-1; j++){
 				if(data[j] > data[j+1]){
 					swap(data,j,j+1); 
@@ -31,6 +33,9 @@ public class BasicSort{
 		}
 	}
 	//Take an element and compare with all previous elements until u find a smaller element
+	//It is basically shell sort with gap = 1.
+	//Good for small data and partially sorted data almost O(n)
+	//Also a stable sort 
 	public void insertionSort(Integer[] data){
 		int j;		
 		for(int i=1; i<data.length; i++){
@@ -41,6 +46,7 @@ public class BasicSort{
 		}
 	}
 	//h-sort - sort at intervals defined by gap
+	//Used in embedded systems can be O(n^4/3) for particular gap sequence othereise O(n^2)
 	public void shellSort(Integer[] data){
 		int N = data.length;
 		for(int gap=N/2; gap>0; gap=gap/2){
