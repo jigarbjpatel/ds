@@ -37,17 +37,21 @@ public class HashTableChaining{
 			buckets[bucketIndex].add(new Node(key,value));
 			totalValues++;			
 		}else{
+			boolean keyFound = false;
 			Iterator<Node> itr = buckets[bucketIndex].iterator();
 			while(itr.hasNext()){
 				Node n = itr.next();
 				if(n.key == key){//case 2: key found in bucket
 					n.value = value;
+					keyFound = true;
 					break;
 				}
 			}
-			//case 3: key not found in bucket
-			buckets[bucketIndex].add(new Node(key,value));
-			totalValues++;
+			if(!keyFound){
+				//case 3: key not found in bucket
+				buckets[bucketIndex].add(new Node(key,value));
+				totalValues++;
+			}
 		}
 	}
 	public String get(Integer key){
@@ -74,13 +78,17 @@ public class HashTableChaining{
 		}
 		
 	}
+	@Override
 	public String toString(){
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for(int i=0; i<buckets.length; i++){
 			LinkedList<Node> l = buckets[i];
 			if(l != null){
 				for(Node n: l){
-					sb.append(n.key + " " + n.value + "\n");
+					sb.append(n.key);
+					sb.append(" ");
+					sb.append(n.value);
+					sb.append("\n");
 				}
 			}
 		}
