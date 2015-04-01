@@ -47,7 +47,7 @@ public class ArrayQueue{
 		}
 	}
 	public String toString(){
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for(int i=first; i<first+size; i++)
 			sb.append(A[i % A.length] + " ");
 		return sb.toString();
