@@ -8,9 +8,8 @@ public class ArrayStack{
 		top = -1;
 	}
 	public void push(Integer i){
-		if(top == values.length-1){
+		if(top == values.length-1)
 			throw new RuntimeException("Stack Overflow");
-		}
 		top++;
 		values[top] = i;
 	}
@@ -27,7 +26,6 @@ public class ArrayStack{
 	public Integer peek(){
 		if(top != -1)
 			return values[top];
-
 		else
 			throw new RuntimeException("Stack is empty");
 	}
