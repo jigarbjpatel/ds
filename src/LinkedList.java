@@ -80,7 +80,7 @@ public class LinkedList implements Iterable<Integer>{
 		}
 	}
 	public String toString(){
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
 		for(Integer i : this){
 			result.append(i + "  ");
 		}
