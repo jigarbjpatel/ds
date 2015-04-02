@@ -87,20 +87,30 @@ public class Dijkstra{
 			public Node(int vertex, int weight){
 				this.vertex = vertex;
 				this.weight = weight;
-			}			
+			}
+			@Override
 			public String toString(){
 				return this.vertex + " " + this.weight;
 			}
+			@Override
 			public int compareTo(Node other){
 				return Integer.compare(this.weight, other.weight);
 			}
-			public boolean equals(Node other){
-				if(other == null)
-					return false;
-				return this.vertex.equals(other.vertex) && this.weight.equals(other.weight);
+			@Override
+			public boolean equals(Object other){
+				if(this == other) return true;
+				if(other == null) return false;
+				if(!(other instanceof Node)) return false;
+				Node o = (Node)other;
+				return this.vertex.equals(o.vertex) && this.weight.equals(o.weight);
 			}
+			@Override
 			public int hashCode(){
-				return vertex.hashCode() ^ weight.hashCode();
+				int res = 17;
+				res = res * 31 + vertex.hashCode();
+				res = res * 31 + weight.hashCode();
+				return res;
+				//return vertex.hashCode() ^ weight.hashCode();
 			}
 	}
 
