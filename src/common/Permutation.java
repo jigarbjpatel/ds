@@ -7,7 +7,7 @@ public class Permutation{
 		Permute("", input);
 	}
 	private static void Permute(String soFar, String rest){
-//		System.out.println(soFar);
+		//If there is nothing left to permute print whatever is accumulated
 		if(rest.equals(""))
 			System.out.println(soFar);
 		else{
