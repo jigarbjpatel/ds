@@ -31,7 +31,6 @@ public class ArraysAndStrings {
 		char[] inputArray = input.toCharArray();
 		char[] removeArray = remove.toCharArray();
 		boolean[] flags = new boolean[128]; //asumes ASCII input
-		int srcPointer = 0;
 		int destPointer = 0;
 		//set up the remove array flags
 		for(int i=0; i<removeArray.length; i++){
@@ -40,10 +39,9 @@ public class ArraysAndStrings {
 		//compare the input string
 		for(int i=0;i<inputArray.length; i++){
 			if(flags[inputArray[i]] == false){
-				inputArray[destPointer] = inputArray[srcPointer];
+				inputArray[destPointer] = inputArray[i];
 				destPointer++;
 			}
-			srcPointer++;
 		}
 		
 		return new String(inputArray,0,destPointer);
