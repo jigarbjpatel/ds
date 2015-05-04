@@ -31,6 +31,7 @@ public class LongestLines{
 		System.out.println(lines);
 	}
 	private static class LineComparator implements Comparator<String>{
+		@Override
 		public int compare(String l1, String l2){
 			return l1.length()-l2.length();
 		}
