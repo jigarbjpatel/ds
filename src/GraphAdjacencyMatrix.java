@@ -39,8 +39,9 @@ public class GraphAdjacencyMatrix{
 		}
 		
 	}
+	@Override
 	public String toString(){
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		sb.append("Number of vertices: " + vertices + "\n");
 		for(int i=0; i<vertices; i++){
 			for(int j=0; j<vertices; j++){
