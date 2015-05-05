@@ -17,9 +17,9 @@ public class LinkedList implements Iterable<Integer>{
 	public void add(Integer value){
 		//adds at the end of list
 		Node newNode = new Node(value,null);
-		if(head == null)
+		if(head == null){
 			head = newNode;
-		else{
+		}else{
 			Node temp = head;
 			while(temp.next != null)
 				temp = temp.next;
@@ -58,6 +58,9 @@ public class LinkedList implements Iterable<Integer>{
 	public Iterator<Integer> iterator(){
 		return new LinkedListIterator();
 	}
+	/**
+	 * Iterator for the Linked List
+	 */
 	private class LinkedListIterator implements Iterator<Integer>{
 		Node currentNode;
 		public LinkedListIterator(){
@@ -79,6 +82,7 @@ public class LinkedList implements Iterable<Integer>{
 			throw new UnsupportedOperationException();
 		}
 	}
+	@Override
 	public String toString(){
 		StringBuilder result = new StringBuilder();
 		for(Integer i : this){
