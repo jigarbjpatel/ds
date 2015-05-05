@@ -19,6 +19,11 @@ public class MinHeap{
 		}
 		heap[position] = value; //place the value at its correct position
 	}
+	public Integer getMin(){
+		if(size > 0)
+			return heap[1]; //heap[0] is not used
+		throw new Exception("Heap Empty");
+	}
 	public Integer deleteMin(){
 		Integer min;
 		if(size > 0){			
