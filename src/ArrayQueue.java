@@ -46,6 +46,7 @@ public class ArrayQueue{
 			throw new NoSuchElementException("Queue Empty");
 		}
 	}
+	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		for(int i=first; i<first+size; i++)
