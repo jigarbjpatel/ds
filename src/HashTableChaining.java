@@ -41,7 +41,7 @@ public class HashTableChaining{
 			Iterator<Node> itr = buckets[bucketIndex].iterator();
 			while(itr.hasNext()){
 				Node n = itr.next();
-				if(n.key == key){//case 2: key found in bucket
+				if(n.key.equals(key)){//case 2: key found in bucket
 					n.value = value;
 					keyFound = true;
 					break;
@@ -59,7 +59,7 @@ public class HashTableChaining{
 		LinkedList<Node> l = buckets[bucketIndex];
 		if(l != null){
 			for(Node n : l){
-				if(n.key == key)
+				if(n.key.equals(key))
 					return n.value;				
 			}
 		}
@@ -70,9 +70,10 @@ public class HashTableChaining{
 		LinkedList<Node> l = buckets[bucketIndex];
 		if(l != null){
 			for(Node n : l){
-				if(n.key == key){
+				if(n.key.equals(key)){
 					l.remove(n);
 					totalValues--;
+					break;
 				}
 			}
 		}
