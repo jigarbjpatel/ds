@@ -1,4 +1,6 @@
 package edu.cmu.jjpatel;
+import java.util.*;
+
 public class MinHeap{
 	private Integer[] heap;
 	private int size;
@@ -20,9 +22,10 @@ public class MinHeap{
 		heap[position] = value; //place the value at its correct position
 	}
 	public Integer getMin(){
-		if(size > 0)
+		if(size > 0){
 			return heap[1]; //heap[0] is not used
-		throw new Exception("Heap Empty");
+		}
+		throw new RuntimeException("Heap Empty");
 	}
 	public Integer deleteMin(){
 		Integer min;
@@ -32,34 +35,39 @@ public class MinHeap{
 			size--;
 			//percolate Down the root
 			int currentPosition = 1;
-			int leftChildIndex;
-			int rightChildIndex;
-			int childToCompareWith;
+			int leftChildIndex, rightChildIndex, childToCompareWith;
 			while(currentPosition <= size){	
 				leftChildIndex = currentPosition * 2;
 				rightChildIndex = leftChildIndex + 1;
-				if(leftChildIndex > size)
-					break;			
+				if(leftChildIndex > size){
+					break;
+				}
 				//find which child is smaller
 				childToCompareWith = (rightChildIndex <= size && heap[rightChildIndex] < heap[leftChildIndex]) 
 								? rightChildIndex : leftChildIndex;
 				//Swap if required else break
 				if(heap[currentPosition] > heap[childToCompareWith]){
-					Integer temp = heap[currentPosition];
-					heap[currentPosition] = heap[childToCompareWith];
-					heap[childToCompareWith] = temp;
+					swap(heap, currentPosition, childToCompareWith);
 					currentPosition = childToCompareWith;
 				}else{
 					break;
 				}
 				
 			}
-		}else throw new RuntimeException();
+		}else{
+			throw new RuntimeException("Heap is empty");
+		}
+		
 		return min;
+	}
+	private void swap(Integer[] arr, int indexOne, int indexTwo){
+		Integer temp = arr[indexOne];
+		arr[indexOne] = arr[indexTwo];
+		arr[indexTwo] = temp;
 	}
 
 	public String toString(){
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for(int i=1; i<=size; i++)
 			sb.append(heap[i] + " ");
 		return sb.toString();
