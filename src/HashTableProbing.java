@@ -25,7 +25,7 @@ public class HashTableProbing{
 	public void put(Integer key, String value){
 		int bucketIndex = getHashCode(key);
 		if(buckets[bucketIndex] != null){
-			for(int i = bucketIndex+1; i < bucketIndex + totalBuckets-1; i++){
+			for(int i = bucketIndex+1; i < bucketIndex + totalBuckets; i++){
 				if(buckets[i % totalBuckets] == null){
 					buckets[i % totalBuckets] = new Node(key,value);
 					return;
@@ -35,13 +35,13 @@ public class HashTableProbing{
 			buckets[bucketIndex] = new Node(key,value);
 			return;
 		}
-		//TODO: Need to resize the buckets array
+		//TODO: Need to resize the buckets array when it is full 
 	}
 	public String get(Integer key){
 		int bucketIndex = getHashCode(key);
 		for(int i=bucketIndex; i < bucketIndex + totalBuckets; i++){
 			i = i % totalBuckets;
-			if(buckets[i] != null && buckets[i].key == key)
+			if(buckets[i] != null && buckets[i].key.equals(key))
 				return buckets[i].value;				
 		}
 		return "Element not found";
@@ -51,7 +51,7 @@ public class HashTableProbing{
 		if(buckets[bucketIndex] != null){
 			for(int i=bucketIndex; i < bucketIndex + totalBuckets; i++){
 				i = i % totalBuckets;
-				if(buckets[i] != null && buckets[i].key == key){
+				if(buckets[i] != null && buckets[i].key.equals(key)){
 					buckets[i] = null;
 					rehash(i+1); // rehash all the buckets from next bucket till u find null
 					break;
@@ -60,7 +60,7 @@ public class HashTableProbing{
 		}
 	}
 	private void rehash(Integer i){
-		//rehash till there is null value in bucket
+		//rehash till there is null value in bucket or you loop thru entire bucket array
 		int j=0;
 		while(buckets[i] != null || j == totalBuckets){
 			Node n = buckets[i];
@@ -71,7 +71,7 @@ public class HashTableProbing{
 		}
 	}
 	public String toString(){
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for(int i=0; i<buckets.length; i++){
 			if(buckets[i] != null)
 				sb.append(i + " " +buckets[i].key + " " + buckets[i].value + "\n");
