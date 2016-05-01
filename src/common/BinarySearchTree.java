@@ -75,8 +75,7 @@ public class BinarySearchTree {
 	//deletemin will return either right of the input node if input node is being deleted or
 	//it will return the modified subtree rooted at inputnode.left
 	public Node deleteMin(Node n){
-		//
-		if(n== null)
+		if(n == null)
 			return null;
 		if(n.left == null)
 			return n.right;
@@ -87,6 +86,8 @@ public class BinarySearchTree {
 		root = deleteMax(root);
 	}
 	public Node deleteMax(Node n){
+		if(n == null)
+			return null;
 		if(n.right == null)
 			return n.left;
 		n.right  = deleteMax(n.right);
