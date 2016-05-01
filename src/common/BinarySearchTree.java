@@ -124,7 +124,8 @@ public class BinarySearchTree {
 		return n;
 
 	}
-	public Node getMinUsingWhile(Node n){
+	public Node getMinUsingWhile(Node root){
+		Node n = root;
 		if(n == null)
 			return null;
 		while(n.left != null)
